@@ -1,13 +1,11 @@
-const express = require('express')// importar o express
+import express from 'express'// importar o express
+
 const app = express()// criar uma instancia
-const port = 3000// define a porta
+
 
 // criar rota padrao ou raiz
 app.get('/', (req, res) => {
     res.send('Curso de NodeJS')
 })
 
-// escutar porta
-app.listen(port, () => {
-    console.log(`Servvidor rodando no endereco http://localhost:${port}`)
-})
+export default app
