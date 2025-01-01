@@ -17,8 +17,16 @@ app.get('/', (req, res) => {
 
 //nova rota, endpoint
 app.get('/selecoes', (req, res) => {
-    res.send('Lista de seleções')//enviar uma resposta
+    res.status(200).send(selecoes)//enviar uma resposta
 })
+
+
+//rota post -postar dados
+app.post('/selecoes', (req, res) => {
+    selecoes.push(req.body)//corpo da requisicao - o conteudo
+    res.status(201).send('Seleção cadastrada com sucesso')// codigo 201 - codego de criacao
+})
+
 
 //exportar o app
 export default app
