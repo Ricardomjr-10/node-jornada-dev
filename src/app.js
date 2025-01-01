@@ -7,5 +7,5 @@ const app = express()// criar uma instancia
 app.get('/', (req, res) => {
     res.send('Curso de NodeJS')
 })
-
+//exportar o app
 export default app
