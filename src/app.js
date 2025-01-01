@@ -6,3 +6,8 @@ const port = 3000// define a porta
 app.get('/', (req, res) => {
     res.send('Olá Mundo!')
 })
+
+// escutar porta
+app.listen(port, () => {
+    console.log(`Servvidor rodando no endereco http://localhost:${port}`)
+})
