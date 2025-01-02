@@ -12,6 +12,11 @@ const selecoes = [
     { id: 4, selecao: 'Camarões', grupo: 'G' }
 ]
 
+//funcao para localizar selecoes por id
+function buscarSelecaoPorId(id) {
+    return selecoes.filter(selecao => selecao.id == id)
+}
+
 // criar rota padrao ou raiz
 app.get('/', (req, res) => {
     res.send('Curso de NodeJS')
