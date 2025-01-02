@@ -27,6 +27,11 @@ app.get('/selecoes', (req, res) => {
     res.status(200).send(selecoes)//enviar uma resposta
 })
 
+//rota get por id
+app.get('/selecoes/:id', (req, res) => {
+    //let index = req.params.id
+    res.json(buscarSelecaoPorId(req.params.id))
+})
 
 //rota post -postar dados
 app.post('/selecoes', (req, res) => {
