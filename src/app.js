@@ -51,5 +51,13 @@ app.delete('/selecoes/:id', (req, res) => {
     res.send(`Seleçao com id ${req.params.id} excluida com sucesso`)
 })
 
+//rota de atualizacao de dados - alterar dados
+app.put('/selecoes/:id', (req, res) => {
+    let index = buscarIndexSelecao(req.params.id)
+    selecoes[index].selecao = req.body.selecao
+    selecoes[index].grupo   = req.body.grupo
+    res.json(selecoes)
+})
+
 //exportar o app
 export default app
