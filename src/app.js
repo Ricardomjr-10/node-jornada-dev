@@ -46,7 +46,7 @@ app.post('/selecoes', (req, res) => {
 
 // rota para apagar dados
 app.delete('/selecoes/:id', (req, res) => {
-    let index = buscarIndexSelecao(req.params.id)
+    let index = buscarIndexSelecao(req.params.id)//req.params.id - capturar o id passado por paramentro
     selecoes.splice(index, 1)// cortar um item do array 
     res.send(`Seleçao com id ${req.params.id} excluida com sucesso`)
 })
@@ -54,8 +54,8 @@ app.delete('/selecoes/:id', (req, res) => {
 //rota de atualizacao de dados - alterar dados
 app.put('/selecoes/:id', (req, res) => {
     let index = buscarIndexSelecao(req.params.id)
-    selecoes[index].selecao = req.body.selecao
-    selecoes[index].grupo   = req.body.grupo
+    selecoes[index].selecao = req.body.selecao // req.body.selecao - buscar do corpo da requisicao o campo selecao
+    selecoes[index].grupo   = req.body.grupo // req.body.grupo - buscar do corpo da requisicao o campo grupo
     res.json(selecoes)
 })
 
