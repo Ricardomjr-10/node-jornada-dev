@@ -8,13 +8,18 @@ app.use(express.json())// configurar o app para receber json-ler body com json
 const selecoes = [
     { id: 1, selecao: 'Brasil', grupo: 'G' },
     { id: 2, selecao: 'Suiça', grupo: 'G' },
-    { id: 3, selecao: 'Sérvia', grupo: 'G' },
-    { id: 4, selecao: 'Camarões', grupo: 'G' }
+    { id: 3, selecao: 'Camarões', grupo: 'G' },
+    { id: 4, selecao: 'Sérvia', grupo: 'G' }
 ]
 
 //funcao para localizar selecoes por id
 function buscarSelecaoPorId(id) {
     return selecoes.filter(selecao => selecao.id == id)
+}
+
+//funcao para buscar selecao pelo indice
+function buscarIndexSelecao(id) {
+    return selecoes.findIndex(selecao => selecao.id == id)
 }
 
 // criar rota padrao ou raiz
@@ -39,6 +44,12 @@ app.post('/selecoes', (req, res) => {
     res.status(201).send('Seleção cadastrada com sucesso')// codigo 201 - codego de criacao
 })
 
+// rota para apagar dados
+app.delete('/selecoes/:id', (req, res) => {
+    let index = buscarIndexSelecao(req.params.id)
+    selecoes.splice(index, 1)// cortar um item do array 
+    res.send(`Seleçao com id ${req.params.id} excluida com sucesso`)
+})
 
 //exportar o app
 export default app
