@@ -12,6 +12,7 @@ const selecoes = [
     { id: 4, selecao: 'Sérvia', grupo: 'G' },
     { id: 5, selecao: 'Portugal', grupo: 'G' },
     { id: 6, selecao: 'Uruguai', grupo: 'F' },
+    { id: 7, selecao: 'Alemanha', grupo: 'F' },
 ]
 
 //funcao para localizar selecoes por id
