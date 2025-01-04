@@ -64,9 +64,18 @@ app.post('/selecoes', (req, res) => {
 
 // rota para apagar dados
 app.delete('/selecoes/:id', (req, res) => {
-    let index = buscarIndexSelecao(req.params.id)//req.params.id - capturar o id passado por paramentro
-    selecoes.splice(index, 1)// cortar um item do array 
-    res.send(`Seleçao com id ${req.params.id} excluida com sucesso`)
+    //let index = buscarIndexSelecao(req.params.id)//req.params.id - capturar o id passado por paramentro
+    //selecoes.splice(index, 1)// cortar um item do array 
+    //res.send(`Seleçao com id ${req.params.id} excluida com sucesso`)
+    const id = req.params.id
+    const sql = 'DELETE FROM selecoes WHERE id = ?'
+    conexao.query(sql, id, (erro, resultado) => {
+        if (erro) {
+            res.status(404).json({'erro': erro})
+        } else {
+            res.status(200).json(resultado)
+        }
+    })
 })
 
 //rota de atualizacao de dados - alterar dados
