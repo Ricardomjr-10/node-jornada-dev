@@ -4,18 +4,6 @@ const app = express()// criar uma instancia
 
 app.use(express.json())// configurar o app para receber json-ler body com json
 
-// mock de dados
-const selecoes = [
-    { id: 1, selecao: 'Brasil', grupo: 'G' },
-    { id: 2, selecao: 'Suiça', grupo: 'G' },
-    { id: 3, selecao: 'Camarões', grupo: 'G' },
-    { id: 4, selecao: 'Sérvia', grupo: 'G' },
-    { id: 5, selecao: 'Portugal', grupo: 'G' },
-    { id: 6, selecao: 'Uruguai', grupo: 'F' },
-    { id: 7, selecao: 'Alemanha', grupo: 'F' },
-    { id: 8, selecao: 'Argentina', grupo: 'F' },
-    { id: 9, selecao: 'Espanha', grupo: 'F' },
-]
 
 //funcao para localizar selecoes por id
 function buscarSelecaoPorId(id) {
@@ -27,14 +15,19 @@ function buscarIndexSelecao(id) {
     return selecoes.findIndex(selecao => selecao.id == id)
 }
 
-// criar rota padrao ou raiz
-app.get('/', (req, res) => {
-    res.send('Curso de NodeJS')
-})
+
 
 //nova rota, endpoint
 app.get('/selecoes', (req, res) => {
-    res.status(200).send(selecoes)//enviar uma resposta
+    //res.status(200).send(selecoes)//enviar uma resposta
+    const sql = 'SELECT * FROM selecoes'
+    conexao.query(sql, (erro, resultado) => {
+        if (erro) {
+            res.status(404).json({'erro': erro})
+        } else {
+            res.status(200).json(resultado)
+        }
+    })
 })
 
 //rota get por id
