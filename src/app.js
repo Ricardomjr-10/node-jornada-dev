@@ -33,7 +33,17 @@ app.get('/selecoes', (req, res) => {
 //rota get por id
 app.get('/selecoes/:id', (req, res) => {
     //let index = req.params.id
-    res.json(buscarSelecaoPorId(req.params.id))
+    //res.json(buscarSelecaoPorId(req.params.id))
+    const id = req.params.id
+    const sql = 'SELECT * FROM selecoes WHERE id = ?'
+    conexao.query(sql, id, (erro, resultado) => {
+        if (erro) {
+            res.status(404).json({'erro': erro})
+        } else {
+            res.status(200).json(resultado)
+        }
+        
+    })
 })
 
 //rota post -postar dados
