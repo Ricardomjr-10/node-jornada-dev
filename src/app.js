@@ -49,8 +49,17 @@ app.get('/selecoes/:id', (req, res) => {
 
 //rota post -postar dados
 app.post('/selecoes', (req, res) => {
-    selecoes.push(req.body)//corpo da requisicao - o conteudo
-    res.status(201).send('Seleção cadastrada com sucesso')// codigo 201 - codego de criacao
+    //selecoes.push(req.body)//corpo da requisicao - o conteudo
+    //res.status(201).send('Seleção cadastrada com sucesso')// codigo 201 - codego de criacao
+    const selecao = req.body
+    const sql = 'INSERT INTO selecoes SET ?' // ? CONJUNTO DE DADOS QUE VAI SER INSERIDO
+    conexao.query(sql,selecao, (erro, resultado) => {
+        if (erro) {
+            res.status(400).json({'erro': erro})
+        } else {
+            res.status(201).json(resultado)
+        }
+    })
 })
 
 // rota para apagar dados
