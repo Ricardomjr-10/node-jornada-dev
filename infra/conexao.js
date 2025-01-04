@@ -7,5 +7,7 @@ const conexao = mysql.createConnection({
     password: '1234',
     database: 'bdcopa'
 })
+// conectar ao banco
+conexao.connect()
 
 export default conexao
