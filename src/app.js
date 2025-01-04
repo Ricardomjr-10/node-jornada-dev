@@ -1,5 +1,5 @@
 import express from 'express'// importar o express
-
+import conexao from '../infra/conexao.js' // importar conexao
 const app = express()// criar uma instancia
 
 app.use(express.json())// configurar o app para receber json-ler body com json
