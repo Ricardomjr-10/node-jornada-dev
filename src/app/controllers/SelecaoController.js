@@ -1,3 +1,4 @@
+import conexao from "../database/conexao"
 class SelecaoController {
 
     index(req, res) {
