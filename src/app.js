@@ -1,20 +1,12 @@
 import express from 'express'// importar o express
-import conexao from '../infra/conexao.js' // importar conexao
+import conexao from './app/database/conexao.js' // importar conexao
+import SelecaoController from './app/controllers/SelecaoController.js'
 const app = express()// criar uma instancia
 
 app.use(express.json())// configurar o app para receber json-ler body com json
 
 //nova rota, endpoint
-app.get('/selecoes', (req, res) => {
-    const sql = 'SELECT * FROM selecoes'
-    conexao.query(sql, (erro, resultado) => {
-        if (erro) {
-            res.status(404).json({ 'erro': erro })
-        } else {
-            res.status(200).json(resultado)
-        }
-    })
-})
+app.get('/selecoes', SelecaoController.index)
 
 //rota get por id
 app.get('/selecoes/:id', (req, res) => {
