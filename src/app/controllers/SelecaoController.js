@@ -8,31 +8,25 @@ class SelecaoController {
     } // listar tudo
     async show(req, res) {
         const id = req.params.id
-       const row = await SelecaoRepository.findById(id)
-       res.json(row)
+        const row = await SelecaoRepository.findById(id)
+        res.json(row)
     } // listar por id
     async store(req, res) {
         const selecao = req.body
         const row = await SelecaoRepository.create(selecao)
         res.json(row)
-        
+
     } // criar dados
     async update(req, res) {
         const id = req.params.id
         const selecao = req.body
-        const row = await SelecaoRepository.update(id, selecao)
+        const row = await SelecaoRepository.update(selecao, id)
         res.json(row)
     } // atualizar
     delete(req, res) {
         const id = req.params.id
-        const sql = 'DELETE FROM selecoes WHERE id = ?'
-        conexao.query(sql, id, (erro, resultado) => {
-            if (erro) {
-                res.status(404).json({ 'erro': erro })
-            } else {
-                res.status(200).json(resultado)
-            }
-        })
+        const row = SelecaoRepository.delete(id)
+        res.json(row)
     } // deletar
 }
 

@@ -7,9 +7,9 @@ class SelecaoRepository {
         return new Promise((resolve, reject) => {
             conexao.query(sql, selecao, (erro, resultado) => {
                 if (erro) return reject('Não foi possível cadastrar')
-                    //fazer o parse dos resultados
-                    const row = JSON.parse(JSON.stringify(resultado))
-                    return resolve(row)
+                //fazer o parse dos resultados
+                const row = JSON.parse(JSON.stringify(resultado))
+                return resolve(row)
             })
         })
     }
@@ -18,9 +18,9 @@ class SelecaoRepository {
         return new Promise((resolve, reject) => {
             conexao.query(sql, (erro, resultado) => {
                 if (erro) return reject('Não foi possível listar as seleções')
-                    //fazer o parse dos resultados
-                    const row = JSON.parse(JSON.stringify(resultado))
-                    return resolve(row)
+                //fazer o parse dos resultados
+                const row = JSON.parse(JSON.stringify(resultado))
+                return resolve(row)
             })
         })
     }
@@ -29,9 +29,9 @@ class SelecaoRepository {
         return new Promise((resolve, reject) => {
             conexao.query(sql, id, (erro, resultado) => {
                 if (erro) return reject('Não foi possível listar as seleções')
-                    //fazer o parse dos resultados
-                    const row = JSON.parse(JSON.stringify(resultado))
-                    return resolve(row)
+                //fazer o parse dos resultados
+                const row = JSON.parse(JSON.stringify(resultado))
+                return resolve(row)
             })
         })
     }
@@ -40,13 +40,23 @@ class SelecaoRepository {
         return new Promise((resolve, reject) => {
             conexao.query(sql, [selecao, id], (erro, resultado) => {
                 if (erro) return reject('Não foi possível atualizar a seleção')
-                    //fazer o parse dos resultados
-                    const row = JSON.parse(JSON.stringify(resultado))
-                    return resolve(row)
+                //fazer o parse dos resultados
+                const row = JSON.parse(JSON.stringify(resultado))
+                return resolve(row)
             })
         })
     }
-    delete() {}
+    delete(id) {
+        const sql = 'DELETE FROM selecoes WHERE id = ?'
+        return new Promise((resolve, reject) => {
+            conexao.query(sql, id, (erro, resultado) => {
+                if (erro) return reject('Não foi possível deletar a seleção')
+                //fazer o parse dos resultados
+                const row = JSON.parse(JSON.stringify(resultado))
+                return resolve(row)
+            })
+        })
+    }
 }
 
 export default new SelecaoRepository
