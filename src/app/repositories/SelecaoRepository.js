@@ -4,14 +4,7 @@ class SelecaoRepository {
     //CRUD
     create(selecao) {
         const sql = 'INSERT INTO selecoes SET ?' // ? CONJUNTO DE DADOS QUE VAI SER INSERIDO
-        return new Promise((resolve, reject) => {
-            conexao.query(sql, selecao, (erro, resultado) => {
-                if (erro) return reject('Não foi possível cadastrar')
-                //fazer o parse dos resultados
-                const row = JSON.parse(JSON.stringify(resultado))
-                return resolve(row)
-            })
-        })
+        
     }
     findAll() {
         const sql = 'SELECT * FROM selecoes'

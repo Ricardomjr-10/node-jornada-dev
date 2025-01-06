@@ -14,14 +14,14 @@ conexao.connect()
 /**
  * Exexuta um codigo sql com ou sem valores
  * @param {string} sql instrucao sql a ser executada
- * @param {string=id | [selecao, id]} valores // valores a serem passados para o sql
- * @param {*} mensagemReject 
- * @returns 
+ * @param {string=id | [selecao, id]} valores  valores a serem passados para o sql
+ * @param {string} mensagemReject  mensagem a ser exibida
+ * @returns retorna o objeto da promessa
  */
-const consulta = (sql, valores='', mensagemReject) => {
+export const consulta = (sql, valores='', mensagemReject) => {
     return new Promise((resolve, reject) => {
-        conexao.query(sql, selecao, (erro, resultado) => {
-            if (erro) return reject('Não foi possível cadastrar')
+        conexao.query(sql, valores, (erro, resultado) => {
+            if (erro) return reject(mensagemReject)
             //fazer o parse dos resultados
             const row = JSON.parse(JSON.stringify(resultado))
             return resolve(row)
