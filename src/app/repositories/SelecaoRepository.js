@@ -2,7 +2,7 @@ import conexao from '../database/conexao.js'
 
 class SelecaoRepository {
     //CRUD
-    create() {
+    create(selecao) {
         const sql = 'INSERT INTO selecoes SET ?' // ? CONJUNTO DE DADOS QUE VAI SER INSERIDO
         return new Promise((resolve, reject) => {
             conexao.query(sql, selecao, (erro, resultado) => {
