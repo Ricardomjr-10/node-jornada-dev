@@ -5,8 +5,8 @@ class SelecaoRepository {
     create() {
         const sql = 'INSERT INTO selecoes SET ?' // ? CONJUNTO DE DADOS QUE VAI SER INSERIDO
         return new Promise((resolve, reject) => {
-            conexao.query(sql, (erro, resultado) => {
-                if (erro) return reject('Não foi possível criar a seleção')
+            conexao.query(sql, selecao, (erro, resultado) => {
+                if (erro) return reject('Não foi possível cadastrar')
                     //fazer o parse dos resultados
                     const row = JSON.parse(JSON.stringify(resultado))
                     return resolve(row)
@@ -35,7 +35,17 @@ class SelecaoRepository {
             })
         })
     }
-    update() {}
+    update(selecao, id) {
+        const sql = 'UPDATE selecoes SET ? WHERE id = ?'
+        return new Promise((resolve, reject) => {
+            conexao.query(sql, [selecao, id], (erro, resultado) => {
+                if (erro) return reject('Não foi possível atualizar a seleção')
+                    //fazer o parse dos resultados
+                    const row = JSON.parse(JSON.stringify(resultado))
+                    return resolve(row)
+            })
+        })
+    }
     delete() {}
 }
 

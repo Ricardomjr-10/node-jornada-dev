@@ -17,17 +17,11 @@ class SelecaoController {
         res.json(row)
         
     } // criar dados
-    update(req, res) {
+    async update(req, res) {
         const id = req.params.id
         const selecao = req.body
-        const sql = 'UPDATE selecoes SET ? WHERE id = ?'
-        conexao.query(sql, [selecao, id], (erro, resultado) => {
-            if (erro) {
-                res.status(404).json({ 'erro': erro })
-            } else {
-                res.status(200).json(resultado)
-            }
-        })
+        const row = await SelecaoRepository.update(id, selecao)
+        res.json(row)
     } // atualizar
     delete(req, res) {
         const id = req.params.id
