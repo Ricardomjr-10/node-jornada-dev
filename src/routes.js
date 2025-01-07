@@ -1,15 +1,18 @@
 import { Router } from "express";
+import SelecaoController from "./app/controllers/SelecaoController.js";
 
 const router = Router()
 
 //rotas
 //nova rota, endpoint
-router.app.get('/selecoes', SelecaoController.index)
+router.get('/selecoes', SelecaoController.index)
 //rota get por id
-router.app.get('/selecoes/:id', SelecaoController.show)
+router.get('/selecoes/:id', SelecaoController.show)
 //rota post -postar dados
-router.app.post('/selecoes', SelecaoController.store)
+router.post('/selecoes', SelecaoController.store)
 //rota de atualizacao de dados - alterar dados
-router.app.put('/selecoes/:id', SelecaoController.update)
+router.put('/selecoes/:id', SelecaoController.update)
 // rota para apagar dados
-router.app.delete('/selecoes/:id', SelecaoController.delete)
+router.delete('/selecoes/:id', SelecaoController.delete)
+
+export default router

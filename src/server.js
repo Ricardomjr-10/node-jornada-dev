@@ -1,6 +1,6 @@
 import app from './app.js'//importar o app
 
-const PORT = 3000// define a porta
+const PORT = process.env.PORT || 3000// define a porta ou uma constante node
 
 
 // escutar porta
