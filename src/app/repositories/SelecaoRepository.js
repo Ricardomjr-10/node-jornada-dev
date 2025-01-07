@@ -1,4 +1,4 @@
-import conexao, {consulta} from '../database/conexao.js'
+import {consulta} from '../database/conexao.js'
 
 class SelecaoRepository {
     //CRUD
@@ -16,18 +16,11 @@ class SelecaoRepository {
     }
     update(selecao, id) {
         const sql = 'UPDATE selecoes SET ? WHERE id = ?'
-        return consulta(sql, )
+        return consulta(sql, [selecao, id], 'Não foi possivel atualizar' )
     }
     delete(id) {
         const sql = 'DELETE FROM selecoes WHERE id = ?'
-        return new Promise((resolve, reject) => {
-            conexao.query(sql, id, (erro, resultado) => {
-                if (erro) return reject('Não foi possível deletar a seleção')
-                //fazer o parse dos resultados
-                const row = JSON.parse(JSON.stringify(resultado))
-                return resolve(row)
-            })
-        })
+        return consulta(sql, id, 'Não foi possivel apagar')
     }
 }
 
